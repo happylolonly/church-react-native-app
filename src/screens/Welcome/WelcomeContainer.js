@@ -24,22 +24,28 @@ class WelcomeContainer extends Component {
     submit() {
         const { login, password } = this.state;
 
-        setTimeout(() => {
-            this.props.nava('/list', 'some data');
-        }, 500);
+        console.log('submit');
+        
+        this.props.navigation.navigate('Lists', {
+            someData: 'some data'
+        });
     }
 
     render() {
-        <View>
+        const { login, password } = this.state;
+        return (
+            <View>
 
-            <Welcome
-                login={login}
-                password={password}
-                handleData={this.handleChange}
-                submit={this.submit}
-            />
+                <Welcome
+                    login={login}
+                    password={password}
+                    handleData={this.handleChange}
+                    submit={this.submit}
+                />
 
-        </View>
+            </View>
+
+        )
     }
 }
 
