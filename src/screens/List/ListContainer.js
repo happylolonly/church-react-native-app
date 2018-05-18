@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text , TouchableOpacity} from 'react-native';
 import { Button } from 'nachos-ui';
 
 class ListContainer extends Component {
@@ -31,7 +31,7 @@ class ListContainer extends Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.main} >
                 <Text>Awesome Lists Page!</Text>
 
                 <Text>Secret data from fisrt screen {this.props.navigation.getParam('someData')}</Text>
@@ -40,10 +40,14 @@ class ListContainer extends Component {
                     const { title, description } = item;
 
                     return (
-                        <View key={title} style={styles.container}>
-                            <Text style={styles.text}>{title}</Text>
-                            <Text style={styles.text}>{description}</Text>
-                        </View>
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.navigate('Welcome')}
+                        >
+                            <View key={title} style={styles.container}>
+                                <Text style={styles.text}>{title}</Text>
+                                <Text style={styles.text}>{description}</Text>
+                            </View>
+                        </TouchableOpacity>
                     )
                 })}
 
@@ -63,9 +67,18 @@ const styles = {
         borderWidth: 3,
         borderColor: 'red',
         marginTop: 10,
+        width: 200,
     },
     text: {
         textAlign: 'center'
+    },
+    main: {
+        flex: 1,
+        // width: 200,
+        // justifyContent: 'center',
+        // alignContent: 'center',
+        flex: 1,
+        alignItems: 'center'
     }
 }
 
